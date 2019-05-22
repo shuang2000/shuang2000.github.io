@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shuang2000.github.io/"/>
-  <updated>2019-05-22T07:13:18.666Z</updated>
+  <updated>2019-05-22T07:33:35.760Z</updated>
   <id>https://shuang2000.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://shuang2000.github.io/2019/05/22/hexo-add-search/"/>
     <id>https://shuang2000.github.io/2019/05/22/hexo-add-search/</id>
     <published>2019-05-22T06:55:30.779Z</published>
-    <updated>2019-05-22T07:13:18.666Z</updated>
+    <updated>2019-05-22T07:33:35.760Z</updated>
     
-    <content type="html"><![CDATA[<p>一，在主题文件配置文件里加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">google_site_verification: true</span><br><span class="line">baidu_site_verification: true</span><br></pre></td></tr></table></figure></p><p>二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta(name=&quot;google-site-verification&quot; content=&quot;2vbLWF2iQPbEWrzOmQDTf1goAfRQ2ZY-05ysvx1K8h8&quot;)</span><br></pre></td></tr></table></figure></p><p>三，回到谷歌点击验证<br>四，添加站点地图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure></p><p>然后执行：hexo clean和hexo g</p><p>这样在你的网站根目录的public文件夹下生成sitemap.xml文件和baidusitemap.xml文件，其中sitemap.xml文件是搜索引擎通用的文件，提交到谷歌站点平台</p>]]></content>
+    <content type="html"><![CDATA[<p>一，在主题文件配置文件里加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">google_site_verification: true</span><br><span class="line">baidu_site_verification: true</span><br></pre></td></tr></table></figure></p><p>二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta(name=&quot;google-site-verification&quot; content=&quot;XXXXXXX&quot;)</span><br></pre></td></tr></table></figure></p><p>三，回到谷歌点击验证<br>四，添加站点地图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure></p><p>然后执行：hexo clean和hexo g</p><p>这样在你的网站根目录的public文件夹下生成sitemap.xml文件和baidusitemap.xml文件，其中sitemap.xml文件是搜索引擎通用的文件，提交到谷歌站点平台</p>]]></content>
     
     <summary type="html">
     
