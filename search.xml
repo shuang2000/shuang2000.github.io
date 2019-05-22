@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[VsCode运行nodeJs]]></title>
+    <url>%2F2019%2F05%2F22%2Fvscode-node%2F</url>
+    <content type="text"><![CDATA[1，安装Code Runner插件2，右键-》run code]]></content>
+      <categories>
+        <category>nodejs</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[hexo博客搜索功能]]></title>
     <url>%2F2019%2F05%2F22%2Fhexo-add-search%2F</url>
     <content type="text"><![CDATA[一，在主题文件配置文件里加12google_site_verification: truebaidu_site_verification: true 二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put1meta(name=&quot;google-site-verification&quot; content=&quot;XXXXXXX&quot;) 三，回到谷歌点击验证四，添加站点地图12npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save 然后执行：hexo clean和hexo g 这样在你的网站根目录的public文件夹下生成sitemap.xml文件和baidusitemap.xml文件，其中sitemap.xml文件是搜索引擎通用的文件，提交到谷歌站点平台]]></content>
@@ -23,21 +31,5 @@
       <categories>
         <category>hexo</category>
       </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World222]]></title>
-    <url>%2F2019%2F05%2F21%2Fhello-world1%2F</url>
-    <content type="text"><![CDATA[2222Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[hello world comments]]></title>
-    <url>%2F2016%2F04%2F05%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>html,js</tag>
-      </tags>
   </entry>
 </search>
