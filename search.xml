@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo博客搜索功能]]></title>
+    <url>%2F2019%2F05%2F22%2Fhexo-add-search%2F</url>
+    <content type="text"><![CDATA[一，在主题文件配置文件里加12google_site_verification: truebaidu_site_verification: true 二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put1meta(name=&quot;google-site-verification&quot; content=&quot;2vbLWF2iQPbEWrzOmQDTf1goAfRQ2ZY-05ysvx1K8h8&quot;) 三，回到谷歌点击验证]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[hexo博客加评论功能]]></title>
     <url>%2F2019%2F05%2F21%2Fhexo-add-valine%2F</url>
     <content type="text"><![CDATA[一，Leancloud官网，点我注册–&gt;创建一个应用，名字可以随便起，然后 进入应用-&gt;设置-&gt;应用key–&gt;获取你的appid 和 appkey 二，打开主题配置文件 搜索 valine（themes–&gt;_config.yml–&gt;valine），填入appid 和 appkey 123456789valine:enable: trueappid: your app idappkey: your app keynotify: false # mail notifier , https://github.com/xCss/Valine/wikiverify: false # Verification codeplaceholder: 欢迎留言guest_info: nick,mail,linkpageSize: 10 三，记得在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去 Leancloud创建class–&gt;comment能看到留言数据]]></content>
