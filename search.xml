@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[hexo博客搜索功能]]></title>
     <url>%2F2019%2F05%2F22%2Fhexo-add-search%2F</url>
-    <content type="text"><![CDATA[一，在主题文件配置文件里加12google_site_verification: truebaidu_site_verification: true 二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put1meta(name=&quot;google-site-verification&quot; content=&quot;2vbLWF2iQPbEWrzOmQDTf1goAfRQ2ZY-05ysvx1K8h8&quot;) 三，回到谷歌点击验证]]></content>
+    <content type="text"><![CDATA[一，在主题文件配置文件里加12google_site_verification: truebaidu_site_verification: true 二，以maupassant主题为例，修改文件D:\zs\blog\myblog\themes\maupassant\layout_partial\head.put1meta(name=&quot;google-site-verification&quot; content=&quot;2vbLWF2iQPbEWrzOmQDTf1goAfRQ2ZY-05ysvx1K8h8&quot;) 三，回到谷歌点击验证四，添加站点地图12npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save 然后执行：hexo clean和hexo g 这样在你的网站根目录的public文件夹下生成sitemap.xml文件和baidusitemap.xml文件，其中sitemap.xml文件是搜索引擎通用的文件，提交到谷歌站点平台]]></content>
       <categories>
         <category>hexo</category>
       </categories>
