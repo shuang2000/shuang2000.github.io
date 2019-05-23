@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shuang2000.github.io/"/>
-  <updated>2019-05-22T07:45:26.405Z</updated>
+  <updated>2019-05-22T08:26:05.489Z</updated>
   <id>https://shuang2000.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端安全问题</title>
+    <link href="https://shuang2000.github.io/2019/05/22/an/"/>
+    <id>https://shuang2000.github.io/2019/05/22/an/</id>
+    <published>2019-05-22T08:23:55.358Z</published>
+    <updated>2019-05-22T08:26:05.489Z</updated>
+    
+    <content type="html"><![CDATA[<p>##前端安全问题什么?</p><p>所有发生在浏览器、单页面应用、Web页面当中的安全问题则算是“前端安全问题”。比如说，SQL注入漏洞发生在后端应用中，是后端安全问题，跨站脚本攻击（XSS）则是前端安全问题，因为它发生在用户的浏览器里。</p><p>##8大前端安全问题：</p><ul><li><p>老生常谈的XSS</p></li><li><p>警惕iframe带来的风险</p></li><li><p>别被点击劫持了</p></li><li><p>错误的内容推断</p></li><li><p>防火防盗防猪队友：不安全的第三方依赖包</p></li><li><p>用了HTTPS也可能掉坑里</p></li><li><p>本地存储数据泄露</p></li><li><p>缺失静态资源完整性校验</p></li></ul><p>##一，老生常谈的XSS，如何防御？<br>XSS是跨站脚本攻击（Cross-Site Scripting）的简称，XSS这类安全问题发生的本质原因在于，浏览器错误的将攻击者提供的用户输入数据当做JavaScript脚本给执行了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">防御XSS最佳的做法就是对数据进行严格的输出编码，使得攻击者提供的数据不再被浏览器认为是脚本而被误执行。</span><br><span class="line">例如&lt;script&gt;在进行HTML编码后变成了&amp;lt;script&amp;gt;，如果数据将被放置于URL中，则需要进行URL编码，将其变为%3Cscript%3E。</span><br><span class="line">此外，还有JavaScript编码、CSS编码、HTML属性编码、JSON编码等等。好在现如今的前端开发框架基本上都默认提供了前端输出编码。</span><br><span class="line">其他的防御措施，例如设置CSP HTTP Header、输入验证、开启浏览器XSS防御等等都是可选项</span><br></pre></td></tr></table></figure><p>##二，警惕iframe带来的风险，如何防御？<br>iframe中的域名因为过期而被恶意攻击者抢注，或者第三方被黑客攻破，iframe中的内容被替换掉了，从而利用用户浏览器中的安全漏洞下载安装木马、恶意勒索软件等等。</p><p>如何防御：还好在HTML5中，iframe有了一个叫做sandbox的安全属性，通过它可以对iframe的行为进行各种限制，充分实现“最小权限“原则。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe sandbox src=&quot;...&quot;&gt; ... &lt;/iframe&gt;</span><br></pre></td></tr></table></figure><p>##三，缺乏静态资源完整性校验，如何防御？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如引用&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p><p>如果攻击者劫持了CDN，攻击者可以肆意篡改我们的前端页面，对用户实施攻击。防御这种攻击的办法是使用浏览器提供的：</p><ul><li>SRI（Subresource Integrity）：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://code.jquery.com/jquery-3.2.1.min.js"</span> integrity=<span class="string">"sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"</span> crossorigin=<span class="string">"anonymous"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li></ul><p>SRI 希哈值生成器：<a href="https://sri.beetool.cn/" target="_blank" rel="noopener">https://sri.beetool.cn/</a></p><ul><li><p>CSP 与 SRI：<br>内容安全政策 （CSP）强制要求当前页面所有脚本加载标签启用 SRI</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Security-Policy"</span> content=<span class="string">"default-src 'self'; img-src https://*; child-src 'none';"</span>&gt;</span><br></pre></td></tr></table></figure></li><li><p>使用 CDN  加载文件失败后补救：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://code.jquery.com/jquery-3.2.1.min.js"</span></span><br><span class="line">        integrity=<span class="string">"sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"</span></span><br><span class="line">        crossorigin=<span class="string">"anonymous"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;<span class="keyword">if</span> (!<span class="built_in">window</span>.jQuery) <span class="built_in">document</span>.write(<span class="string">'&lt;script src="/jquery-3.2.1.min.js"&gt;&lt;\/script&gt;'</span>)&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></li></ul><p>jsDelivr（静态文件 CDN 库）cdn投毒事件：<a href="https://www.v2ex.com/t/403110" target="_blank" rel="noopener">https://www.v2ex.com/t/403110</a></p><p>##四，本地存储数据泄露，如何防御？</p><p>例如假设你的前端应用想要支持离线模式，使得用户在离线情况下依然可以使用你的应用，这就意味着你需要在本地存储用户相关的一些数据，比如说电子邮箱地址、手机号、家庭住址等PII（Personal Identifiable Information）信息，或许还有历史账单、消费记录等数据。<br>所以，在前端存储敏感、机密信息始终都是一件危险的事情，推荐的做法是尽可能不在前端存这些数据。</p><p>##别被点击劫持了，如何防御？</p><p>我们自己的页面可能正在被不法分子放到他们精心构造的iframe或者frame当中，进行点击劫持攻击。<br>比如iframe中的我们的页面透明在Web页面小游戏上面；<br>用户身份在其不知情的情况下进行一些操作，比如删除某个重要文件记录，或者窃取敏感信息，</p><p>##错误的内容推断，如何防御？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ihubo = &#123;</span><br><span class="line">  nickName  : <span class="string">"草依山"</span>,</span><br><span class="line">  site : <span class="string">"http://jser.me"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##前端安全问题什么?&lt;/p&gt;
+&lt;p&gt;所有发生在浏览器、单页面应用、Web页面当中的安全问题则算是“前端安全问题”。比如说，SQL注入漏洞发生在后端应用中，是后端安全问题，跨站脚本攻击（XSS）则是前端安全问题，因为它发生在用户的浏览器里。&lt;/p&gt;
+&lt;p&gt;##8大前端安全问
+      
+    
+    </summary>
+    
+      <category term="安全" scheme="https://shuang2000.github.io/categories/%E5%AE%89%E5%85%A8/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>renren-fast前端打包不同的域名</title>
+    <link href="https://shuang2000.github.io/2019/05/22/renren-config/"/>
+    <id>https://shuang2000.github.io/2019/05/22/renren-config/</id>
+    <published>2019-05-22T08:18:20.883Z</published>
+    <updated>2019-05-22T08:20:33.271Z</updated>
+    
+    <content type="html"><![CDATA[<p>/static文件夹下<br>index-prod.js:写正式环境路径<br>index-qa.js:写测试环境路径<br>敲命令<br>npm run build –qa</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;/static文件夹下&lt;br&gt;index-prod.js:写正式环境路径&lt;br&gt;index-qa.js:写测试环境路径&lt;br&gt;敲命令&lt;br&gt;npm run build –qa&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="https://shuang2000.github.io/categories/vue/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>VsCode运行nodeJs</title>

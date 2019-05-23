@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[前端安全问题]]></title>
+    <url>%2F2019%2F05%2F22%2Fan%2F</url>
+    <content type="text"><![CDATA[##前端安全问题什么? 所有发生在浏览器、单页面应用、Web页面当中的安全问题则算是“前端安全问题”。比如说，SQL注入漏洞发生在后端应用中，是后端安全问题，跨站脚本攻击（XSS）则是前端安全问题，因为它发生在用户的浏览器里。 ##8大前端安全问题： 老生常谈的XSS 警惕iframe带来的风险 别被点击劫持了 错误的内容推断 防火防盗防猪队友：不安全的第三方依赖包 用了HTTPS也可能掉坑里 本地存储数据泄露 缺失静态资源完整性校验 ##一，老生常谈的XSS，如何防御？XSS是跨站脚本攻击（Cross-Site Scripting）的简称，XSS这类安全问题发生的本质原因在于，浏览器错误的将攻击者提供的用户输入数据当做JavaScript脚本给执行了。 1234防御XSS最佳的做法就是对数据进行严格的输出编码，使得攻击者提供的数据不再被浏览器认为是脚本而被误执行。例如&lt;script&gt;在进行HTML编码后变成了&amp;lt;script&amp;gt;，如果数据将被放置于URL中，则需要进行URL编码，将其变为%3Cscript%3E。此外，还有JavaScript编码、CSS编码、HTML属性编码、JSON编码等等。好在现如今的前端开发框架基本上都默认提供了前端输出编码。其他的防御措施，例如设置CSP HTTP Header、输入验证、开启浏览器XSS防御等等都是可选项 ##二，警惕iframe带来的风险，如何防御？iframe中的域名因为过期而被恶意攻击者抢注，或者第三方被黑客攻破，iframe中的内容被替换掉了，从而利用用户浏览器中的安全漏洞下载安装木马、恶意勒索软件等等。 如何防御：还好在HTML5中，iframe有了一个叫做sandbox的安全属性，通过它可以对iframe的行为进行各种限制，充分实现“最小权限“原则。 1&lt;iframe sandbox src=&quot;...&quot;&gt; ... &lt;/iframe&gt; ##三，缺乏静态资源完整性校验，如何防御？1例如引用&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt; 如果攻击者劫持了CDN，攻击者可以肆意篡改我们的前端页面，对用户实施攻击。防御这种攻击的办法是使用浏览器提供的： SRI（Subresource Integrity）：1&lt;script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"&gt;&lt;/script&gt; SRI 希哈值生成器：https://sri.beetool.cn/ CSP 与 SRI：内容安全政策 （CSP）强制要求当前页面所有脚本加载标签启用 SRI 1&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';"&gt; 使用 CDN 加载文件失败后补救： 1234&lt;script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"&gt;&lt;/script&gt;&lt;script&gt;if (!window.jQuery) document.write('&lt;script src="/jquery-3.2.1.min.js"&gt;&lt;\/script&gt;')&lt;/script&gt; jsDelivr（静态文件 CDN 库）cdn投毒事件：https://www.v2ex.com/t/403110 ##四，本地存储数据泄露，如何防御？ 例如假设你的前端应用想要支持离线模式，使得用户在离线情况下依然可以使用你的应用，这就意味着你需要在本地存储用户相关的一些数据，比如说电子邮箱地址、手机号、家庭住址等PII（Personal Identifiable Information）信息，或许还有历史账单、消费记录等数据。所以，在前端存储敏感、机密信息始终都是一件危险的事情，推荐的做法是尽可能不在前端存这些数据。 ##别被点击劫持了，如何防御？ 我们自己的页面可能正在被不法分子放到他们精心构造的iframe或者frame当中，进行点击劫持攻击。比如iframe中的我们的页面透明在Web页面小游戏上面；用户身份在其不知情的情况下进行一些操作，比如删除某个重要文件记录，或者窃取敏感信息， ##错误的内容推断，如何防御？1234var ihubo = &#123; nickName : "草依山", site : "http://jser.me"&#125;]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[renren-fast前端打包不同的域名]]></title>
+    <url>%2F2019%2F05%2F22%2Frenren-config%2F</url>
+    <content type="text"><![CDATA[/static文件夹下index-prod.js:写正式环境路径index-qa.js:写测试环境路径敲命令npm run build –qa]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[VsCode运行nodeJs]]></title>
     <url>%2F2019%2F05%2F22%2Fvscode-node%2F</url>
     <content type="text"><![CDATA[1，安装Code Runner插件2，右键-》run code]]></content>
